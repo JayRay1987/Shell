@@ -187,3 +187,43 @@ cut -d , -f 2 seasonal/winter.csv | grep -v Tooth | sort | uniq -c
 #How many records are in the shortest of the seasonal data files?
 
 wc -l seasonal/*.csv | grep -v total | sort -n | head -n 1
+
+#Batch Processing
+set
+
+#How many old commands stored in your command history
+set | grep HISTFILESIZE
+
+#print a variable's value
+echo Hello World
+
+#use $ in front of a variable to get it's value
+echo $USER
+echo $OSTYPE
+
+#assign a value to a name
+training=seasonal/summer.csv
+#no spaces around = sign
+
+#loops
+for filetype docx odt pdf: do echo $filetype; done
+
+#returns filename
+for filename seasonal/*.csv; do echo $filename; done
+
+#returns filename
+for filename people/*; do echo $filename; done
+
+#more loops
+datasets=seasonal/*.csv
+
+for filename in datasets; do echo $filename; done
+
+#many commands in a single loop
+#this loop prints the second line of each file
+for file in seasonal/*.csv; do head -n 2 $file | tail -n 1; done
+#this loop prints the last entry from 2017-07 from every file
+for file in seasonal/*.csv; do grep 2017-07 $file | tail -n 1; done
+
+#many things in a command
+for f in seasonal/*.csv; do echo $f; head -n 2 $f | tail -n 1; done
