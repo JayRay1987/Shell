@@ -1,0 +1,166 @@
+SHELL
+pwd - print workign directory
+
+ls - listing; list contents of directory
+
+ls /home/repl - shows what's in the directory specified
+
+/ it is absolute, no / not asolute i.e. relative
+
+cd - change directory
+
+Parent of a directory is the directory above.
+
+.. - means directory above
+
+cd ..
+
+. - means current directory
+
+~ - means home
+
+cp - copies files
+
+cp original.txt duplicate.txt
+
+cp seasonal/summer.csv seasonal/winter.csv backup - copies both csvs into backup directory
+
+mv - moves a file
+
+mv autumn.csv winter.csv ..
+
+use mv to rename files
+mv winter.csv winter.csv.bck
+
+rm - remove files
+
+rmdir - remove directories
+
+it will only work if there are no files in the directory so you need to delte all the files first before deleting the directory
+
+mkdir directory_name - to create a new directory
+
+cat filename.txt
+
+less filename.txt filename.txt
+
+spacebar - to go down in file
+
+:n to go to next file
+
+:q to quit
+
+head filename.txt - to show first few rows
+
+head -n 5 filename - show first 5 rows
+
+ls -R - shows everything underneath a directory
+
+ls -F -R (-F flag prints a / after every directory name and * after the name of every runnable program)
+
+man head - brings up all info on head function
+
+tail -n +7 filename.txt - displays all but first 6 lines of filename.
+
+cut - selects columns
+
+eg 
+
+cut -f 2-5,8 -d , values.csv
+
+means "select columns 2 through 5 and columns 8 using comma as a separator"
+
+-f means fields -d means delimiter
+
+history - prints a list of hte commands run recently
+
+each command will be listed with a number before it. to run the 55th command write:
+
+!55
+
+OR
+
+rerun the most recent usage of a command:
+
+!head
+
+grep biscuspid seasonal/winter.csv
+
+grep can search for patterns as well; we will explore those in the next course. What's more important right now is some of grep's more common flags:
+
+-c: print a count of matching lines rather than the lines themselves
+-h: do not print the names of files when searching multiple files
+-i: ignore case (e.g., treat "Regression" and "regression" as matches)
+-l: print the names of files that contain matches, not the matches
+-n: print line numbers for matching lines
+-v: invert the match, i.e., only show lines that don't match
+
+grep -c incisor seasonal/winter.csv
+
+prints the number of lines with incisor in winter.csv
+
+paste seasonal/autumn.csv seasonal/winter.csv
+
+PRINT THE FIRST 5 ROWS OF SUMMER.CSV to TOP.CSV
+head -n 5 seasonal/summer.csv > top.csv
+
+> redirects the head output to a file
+
+| use pipe to combine many commands
+
+cut -d , -f 1 seasonal/spring.csv | grep -v Date | head -n 10
+
+wc - word count
+-c - characters
+-w - words
+-l - lines
+
+grep 2017-07 seasonal/spring.csv | wc -l
+
+WILDCARDS
+
+*
+
+head -n 5 seasonal/*.csv
+
+?
+
+matches a single character
+
+201?.txt
+
+[...]
+
+matches any one of the charcaters inside square brackets.
+
+201[78] will match to 2017 or 2018
+
+{...}
+
+matches any of hte coomma separated patterns inside brackets.
+
+{*.csv, *.txt}
+
+will match to any thing in the brackets.
+
+-n - sort numerically
+
+-r - sort in reverse order
+
+-b - ignores blanks
+
+-f - be case sensitive
+
+uniq - removes duplicate lines
+
+
+EXAMPLE
+sort -n -r
+
+cut -d , -f 2 seasonal/winter.csv | grep -v Tooth | sort | uniq -c
+
+ctrl-C - to stop a command
+
+How many records are in the shortest of the seasonal data files?
+
+wc -l seasonal/*.csv | grep -v total | sort -n | head -n 1
