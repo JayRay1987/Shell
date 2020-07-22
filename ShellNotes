@@ -227,3 +227,29 @@ for file in seasonal/*.csv; do grep 2017-07 $file | tail -n 1; done
 
 #many things in a command
 for f in seasonal/*.csv; do echo $f; head -n 2 $f | tail -n 1; done
+
+#Open or create a file in text editor
+nano filname.txt
+
+#ctrl-o to save
+#ctrl-x to exit
+
+#save history
+history | tail -n 10 > history.txt
+
+#run commands in a file
+nano filename.txt
+#input commands into file and save. run file from command line:
+bash filename.txt
+#or save output to a new file:
+bash filename.txt > filename.out
+
+#$@ in a txt file
+nano count-records.txt
+#input: tail -q -n +2 $@ | wc -l
+
+#run command in file with specified txt files for $@
+bash count-records.txt seasonal/*.csv > num-records-out
+
+
+
